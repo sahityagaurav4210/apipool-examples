@@ -1,4 +1,13 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { FOOTER_ICONS } from './constant';
+
+function handleFooterIcon(icon: FOOTER_ICONS): void {
+  if (icon === FOOTER_ICONS.LINKEDIN)
+    window.open(import.meta.env.VITE_LINKEDIN_PROFILE, '_blank');
+  else if (icon === FOOTER_ICONS.WEB)
+    window.open(import.meta.env.VITE_WEBSITE_URL, '_blank');
+  else window.open(import.meta.env.VITE_MAIL_URL, '_blank');
+}
 
 function App(): ReactNode {
   const [apiUrl, setApiUrl] = useState(import.meta.env.VITE_GEOGRAPHY_LIVE_API);
@@ -178,6 +187,31 @@ function App(): ReactNode {
           </div>
         )}
       </section>
+
+      <footer className='min-h-20 bg-black text-white font-roboto'>
+        <div className='container mx-auto'>
+          <div className='mx-2 lg:mx-0 flex justify-center items-center p-2'>
+            <p className='font-bold text-center text-xs lg:text-base'>
+              Copyright &copy; 2024 | All rights are reserved | Developed and
+              maintained by Gaurav Sahitya
+            </p>
+          </div>
+          <div className='mx-2 lg:mx-0 flex  justify-between items-center'>
+            <i
+              className='ri-linkedin-box-fill text-xl lg:text-3xl'
+              onClick={_ => handleFooterIcon(FOOTER_ICONS.LINKEDIN)}
+            ></i>
+            <i
+              className='ri-mail-fill text-xl lg:text-3xl'
+              onClick={_ => handleFooterIcon(FOOTER_ICONS.MAIL)}
+            ></i>
+            <i
+              className='ri-global-fill text-xl lg:text-3xl'
+              onClick={_ => handleFooterIcon(FOOTER_ICONS.WEB)}
+            ></i>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
